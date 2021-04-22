@@ -8,28 +8,25 @@ class BasicImplicitAnimation extends StatefulWidget {
 }
 
 class _BasicImplicitAnimationState extends State<BasicImplicitAnimation> {
-  bool _smallBox = false;
-
-  void _increaseSize() {
-    setState(() {
-      _smallBox = !_smallBox;
-    });
-  }
+  bool _bigContainer = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: AnimatedContainer(
-          width: _smallBox ? 200 : 400,
-          height: _smallBox ? 200 : 400,
-          color: _smallBox ? Colors.blue : Colors.red,
-          duration: Duration(milliseconds: 500),
+          duration: Duration(seconds: 1),
+          color: _bigContainer ? Colors.blue : Colors.red,
+          height: _bigContainer ? 400 : 200,
+          width: _bigContainer ? 400 : 200,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _increaseSize,
-        tooltip: 'Increment',
+        onPressed: () {
+          setState(() {
+            _bigContainer = !_bigContainer;
+          });
+        },
         child: Icon(Icons.add),
       ),
     );
